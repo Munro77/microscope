@@ -6,5 +6,16 @@ Template.postItem.helpers({
     var a = document.createElement('a');
     a.href = this.url;
     return a.hostname;
+  },
+  commentsCount: function() {
+  return Comments.find({postId: this._id}).count();
+  },
+  hasComments: function() {
+  return Comments.find({postId: this._id}).count() > 0;
+  },
+  onDetailPage: function() {
+		var routeName = Router.current().route.getName();
+		return routeName == 'postPage';
   }
 });
+
